@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <a th:href="@{/catalogue/products/{productId}/edit(productId=${product.id})}">Редактирование товара</a>
+
+    <div>
+        <p><strong>ID:</strong> <span th:text="${product.id}">1</span></p>
+        <p><strong>Title:</strong> <span th:text="${product.title}">Product Title</span></p>
+        <p><strong>Details:</strong> <span th:text="${product.details}">Product Details</span></p>
+    </div>
+    <a th:href="@{/catalogue/products/list}"><- К товарам</a>
+</body>
+</html>

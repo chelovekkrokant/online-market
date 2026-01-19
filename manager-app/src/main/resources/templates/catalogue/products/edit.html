@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+</head>
+<body>
+    <h1>Edit Product</h1>
+    <a data-th-href="@{/catalogue/products/{productId}(productId=${product.id})}">Просмотр товара</a>
+
+    <form th:action="@{/catalogue/products/{productId}/edit(productId=${product.id})}" method="post">
+        <div>
+            <label for="id">ID:</label>
+            <input type="text" id="id" th:value="${product.id}" readonly disabled>
+        </div>
+
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" th:value="${product.title}" required>
+        </div>
+
+        <div>
+            <label for="details">Details:</label>
+            <textarea id="details" name="details" rows="5" th:text="${product.details}"></textarea>
+        </div>
+
+        <div>
+            <button type="submit">Update Product</button>
+            <a th:href="@{/catalogue/products/{productId}(productId=${product.id})}">Cancel</a>
+        </div>
+    </form>
+    <form th:action="@{/catalogue/products/{productId}/delete(productId=${product.id})}" method="post">
+        <button type="submit">Удалить</button>
+    </form>
+</body>
+</html>
