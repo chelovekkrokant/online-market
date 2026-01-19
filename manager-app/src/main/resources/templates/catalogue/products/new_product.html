@@ -8,15 +8,22 @@
 <h1>Новый товар</h1>
 <a data-th-href="@{/catalogue/products/list}">К списку товаров</a>
 
+<div th:if="${errors != null and !errors.isEmpty()}" style="color: red;">
+  <h3>Ошибки:</h3>
+  <ul>
+    <li th:each="error : ${errors}" th:text="${error}"></li>
+  </ul>
+</div>
+
 <form th:action="@{/catalogue/products/create}" method="post">
   <div>
     <label for="title">Название товара:</label>
-    <input type="text" id="title" name="title">
+    <input type="text" id="title" name="title" th:value="${payload != null ? payload.title() : ''}">
   </div>
 
   <div>
     <label for="details">Детали товара:</label>
-    <input type="text" id="details" name="details">
+    <input type="text" id="details" name="details" th:value="${payload != null ? payload.details() : ''}">
   </div>
 
   <div>

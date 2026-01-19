@@ -9,6 +9,13 @@
     <h1>Edit Product</h1>
     <a data-th-href="@{/catalogue/products/{productId}(productId=${product.id})}">Просмотр товара</a>
 
+    <div th:if="${errors != null and !errors.isEmpty()}" style="color: red;">
+        <h3>Ошибки:</h3>
+        <ul>
+            <li th:each="error : ${errors}" th:text="${error}"></li>
+        </ul>
+    </div>
+
     <form th:action="@{/catalogue/products/{productId}/edit(productId=${product.id})}" method="post">
         <div>
             <label for="id">ID:</label>
@@ -17,12 +24,12 @@
 
         <div>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" th:value="${product.title}" required>
+            <input type="text" id="title" name="title" th:value="${payload != null ? payload.title() : product.title}" required>
         </div>
 
         <div>
             <label for="details">Details:</label>
-            <textarea id="details" name="details" rows="5" th:text="${product.details}"></textarea>
+            <textarea id="details" name="details" rows="5" th:text="${payload != null ? payload.details() : product.details}"></textarea>
         </div>
 
         <div>
