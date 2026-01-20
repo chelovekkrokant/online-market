@@ -2,6 +2,7 @@ package com.github.chelovekkrokant.catalogueservice.service;
 
 import com.github.chelovekkrokant.catalogueservice.entity.Product;
 import com.github.chelovekkrokant.catalogueservice.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,12 @@ public class DefaultProductService implements ProductService {
 
 
     @Override
-    public List<Product> findAllProducts() {
-        return this.productRepository.findAll();
+    public Iterable<Product> findAllProducts(String filter) {
+        if (filter != null && !filter.isBlank()) {
+            return this.productRepository.findAllByTitleLikeIgnoreCase(filter);
+        } else {
+            return this.productRepository.findAll();
+        }
     }
 
     @Override
@@ -30,6 +35,7 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
+    @Transactional
     public void updateProduct(Integer productId, String title, String details) {
         this.productRepository.findById(productId)
                 .ifPresentOrElse(product -> {
