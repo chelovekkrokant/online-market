@@ -9,6 +9,8 @@ online-market:
   services:
     catalogue:
       uri: http://localhost:8080
+      username: admin
+      password: admin
 
 server:
   port: 8081

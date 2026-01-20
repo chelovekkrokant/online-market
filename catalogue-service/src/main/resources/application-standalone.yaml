@@ -11,6 +11,12 @@ spring:
     name: catalogue-service
   jpa:
     show-sql: true
+  security:
+    user:
+      name: admin
+      password: admin
+      roles:
+        - SERVICE
 server:
   port: 8080
 logging:

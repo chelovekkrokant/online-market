@@ -5,7 +5,7 @@
 
 	<groupId>com.github.chelovekkrokant</groupId>
 	<artifactId>online-market</artifactId>
-	<version>26.1.21-SNAPSHOT</version>
+	<version>26.1.22-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
