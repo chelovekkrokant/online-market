@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: manager-app
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+online-market:
+  services:
+    catalogue:
+      uri: http://localhost:8080
+
+server:
+  port: 8081
+  error:
+    whitelabel:
+      enabled: false
+    include-message: always
+    include-stacktrace: never

@@ -1,7 +1,7 @@
 package com.github.chelovekkrokant.managerapp.controller;
 
+import com.github.chelovekkrokant.managerapp.client.ProductRestClient;
 import com.github.chelovekkrokant.managerapp.entity.Product;
-import com.github.chelovekkrokant.managerapp.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -24,13 +24,13 @@ import java.util.NoSuchElementException;
 @RequestMapping("catalogue/products/{productId:\\d+}")
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductService productService;
+    private final ProductRestClient productRestClient;
 
     private final MessageSource messageSource;
 
     @ModelAttribute("product")
     public Product product(@PathVariable Integer productId) {
-        return this.productService.findProductById(productId).orElseThrow(() -> new NoSuchElementException("catalogue.errors.product.not_found"));
+        return this.productRestClient.findProduct(productId).orElseThrow(() -> new NoSuchElementException("catalogue.errors.product.not_found"));
     }
 
     @GetMapping
@@ -49,16 +49,16 @@ public class ProductController {
             model.addAttribute("payload", payload);
             model.addAttribute("errors", bindingResult.getAllErrors().stream()
                     .map(ObjectError::getDefaultMessage).toList());
-            return "catalogue/products/%d/edit".formatted(product.getId());
+            return "catalogue/products/edit";
         }
 
-        this.productService.updateProduct(product.getId(), payload.title(), payload.details());
-        return "redirect:/catalogue/products/%d".formatted(product.getId());
+        this.productRestClient.updateProduct(product.id(), payload.title(), payload.details());
+        return "redirect:/catalogue/products/%d".formatted(product.id());
     }
 
     @PostMapping("delete")
     public String deleteProduct(@ModelAttribute("product") Product product) {
-        this.productService.deleteProduct(product.getId());
+        this.productRestClient.deleteProduct(product.id());
         return "redirect:/catalogue/products/list";
     }
 

@@ -1,7 +1,7 @@
-package com.github.chelovekkrokant.managerapp.service;
+package com.github.chelovekkrokant.catalogueservice.service;
 
-import com.github.chelovekkrokant.managerapp.entity.Product;
-import com.github.chelovekkrokant.managerapp.repository.ProductRepository;
+import com.github.chelovekkrokant.catalogueservice.entity.Product;
+import com.github.chelovekkrokant.catalogueservice.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

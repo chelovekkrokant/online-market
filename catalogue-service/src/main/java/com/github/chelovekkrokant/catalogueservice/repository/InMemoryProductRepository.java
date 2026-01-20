@@ -1,6 +1,6 @@
-package com.github.chelovekkrokant.managerapp.repository;
+package com.github.chelovekkrokant.catalogueservice.repository;
 
-import com.github.chelovekkrokant.managerapp.entity.Product;
+import com.github.chelovekkrokant.catalogueservice.entity.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

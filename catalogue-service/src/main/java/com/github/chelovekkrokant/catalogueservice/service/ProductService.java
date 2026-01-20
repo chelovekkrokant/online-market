@@ -1,6 +1,7 @@
-package com.github.chelovekkrokant.managerapp.service;
+package com.github.chelovekkrokant.catalogueservice.service;
 
-import com.github.chelovekkrokant.managerapp.entity.Product;
+
+import com.github.chelovekkrokant.catalogueservice.entity.Product;
 
 import java.util.List;
 import java.util.Optional;

@@ -5,11 +5,12 @@
 
 	<groupId>com.github.chelovekkrokant</groupId>
 	<artifactId>online-market</artifactId>
-	<version>26.1.19-SNAPSHOT</version>
+	<version>26.1.20-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
 		<module>manager-app</module>
+		<module>catalogue-service</module>
 	</modules>
 
 	<properties>
