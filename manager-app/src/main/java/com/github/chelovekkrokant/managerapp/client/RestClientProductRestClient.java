@@ -39,7 +39,7 @@ public class RestClientProductRestClient implements ProductRestClient {
             return this
                     .restClient
                     .post()
-                    .uri("catalogue-api/products")
+                    .uri("/catalogue-api/products")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new NewProductPayload(title, details))
                     .retrieve()
@@ -55,7 +55,7 @@ public class RestClientProductRestClient implements ProductRestClient {
         try {
             return Optional.ofNullable(this.restClient
                     .get()
-                    .uri("catalogue-api/products/{productId}", productId)
+                    .uri("/catalogue-api/products/{productId}", productId)
                     .retrieve()
                     .body(Product.class));
         } catch (HttpClientErrorException.NotFound e) {
@@ -68,7 +68,7 @@ public class RestClientProductRestClient implements ProductRestClient {
         try {
             this.restClient
                     .patch()
-                    .uri("catalogue-api/products/{productId}", productId)
+                    .uri("/catalogue-api/products/{productId}", productId)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new UpdateProductPayload(title, details))
                     .retrieve()
@@ -84,7 +84,7 @@ public class RestClientProductRestClient implements ProductRestClient {
         try {
             this.restClient
                     .delete()
-                    .uri("catalogue-api/products/{productId}", productId)
+                    .uri("/catalogue-api/products/{productId}", productId)
                     .retrieve()
                     .toBodilessEntity();
         } catch (HttpClientErrorException.NotFound e) {

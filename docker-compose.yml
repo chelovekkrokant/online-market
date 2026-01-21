@@ -1,0 +1,38 @@
+services:
+  postgres-catalogue:
+    image: postgres:16
+    container_name: online-market-postgres-catalogue
+    environment:
+      POSTGRES_DB: catalogue
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_catalogue_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d catalogue"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-manager:
+    image: postgres:16
+    container_name: online-market-postgres-manager
+    environment:
+      POSTGRES_DB: manager
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_manager_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d manager"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_catalogue_data:
+  postgres_manager_data:

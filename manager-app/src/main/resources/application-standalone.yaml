@@ -4,6 +4,15 @@ spring:
   messages:
     basename: messages
     encoding: UTF-8
+  datasource:
+    url: jdbc:postgresql://localhost:5433/manager
+    username: admin
+    password: admin
+  flyway:
+    schemas:
+      - user_management
+  jpa:
+    show-sql: true
 
 online-market:
   services:

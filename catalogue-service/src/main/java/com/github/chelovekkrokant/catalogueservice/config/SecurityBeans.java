@@ -16,6 +16,7 @@ public class SecurityBeans {
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         authorizeHttpRequests.requestMatchers("/catalogue-api/**")
                                 .hasRole("SERVICE"))
+                .csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sessionManagement ->
                         sessionManagement
