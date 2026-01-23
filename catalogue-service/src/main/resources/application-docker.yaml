@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-catalogue:5432/catalogue
+    username: admin
+    password: admin
+  flyway:
+    schemas:
+      - public
+      - catalogue
+  application:
+    name: catalogue-service
+  jpa:
+    show-sql: true
+  security:
+    user:
+      name: admin
+      password: '{noop}admin'
+      roles:
+        - SERVICE
+server:
+  port: 8080
+logging:
+  level:
+    sql: info

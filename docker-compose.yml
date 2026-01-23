@@ -33,6 +33,36 @@ services:
       timeout: 5s
       retries: 5
 
+  catalogue-service:
+    build:
+      context: .
+      dockerfile: catalogue-service/Dockerfile
+    container_name: online-market-catalogue-service
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      postgres-catalogue:
+        condition: service_healthy
+    restart: unless-stopped
+
+  manager-app:
+    build:
+      context: .
+      dockerfile: manager-app/Dockerfile
+    container_name: online-market-manager-app
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      postgres-manager:
+        condition: service_healthy
+      catalogue-service:
+        condition: service_started
+    restart: unless-stopped
+
 volumes:
   postgres_catalogue_data:
   postgres_manager_data:

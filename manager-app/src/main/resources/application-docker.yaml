@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: manager-app
+  messages:
+    basename: messages
+    encoding: UTF-8
+  datasource:
+    url: jdbc:postgresql://postgres-manager:5432/manager
+    username: admin
+    password: admin
+  flyway:
+    schemas:
+      - user_management
+  jpa:
+    show-sql: true
+
+online-market:
+  services:
+    catalogue:
+      uri: http://catalogue-service:8080
+      username: admin
+      password: admin
+
+server:
+  port: 8081
+  error:
+    whitelabel:
+      enabled: false
+    include-message: always
+    include-stacktrace: never
