@@ -12,6 +12,12 @@ spring:
   jpa:
     show-sql: true
   security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: localhost:8082/realms/online-manager
+        registration:
     user:
       name: admin
       password: '{noop}admin'
